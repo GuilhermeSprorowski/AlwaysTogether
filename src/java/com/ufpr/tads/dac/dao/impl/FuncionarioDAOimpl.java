@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class FuncionarioDAOimpl implements FuncionarioDAO{
@@ -49,6 +50,31 @@ public class FuncionarioDAOimpl implements FuncionarioDAO{
     @Override
     public boolean isEmailDisponivel(String email) throws FuncionarioException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<FuncionarioBean> getAllFuncioanrios() throws FuncionarioException {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        final ArrayList<FuncionarioBean> al = new ArrayList<FuncionarioBean>();
+        try {
+            con = new ConnectionFactory().getConnection();
+            
+            pst = con.prepareStatement("SELECT * FROM alwaystogether.funcionario WHERE dataDemissao IS NULL AND NOT adm;");
+            rs = pst.executeQuery();            
+            while(rs.next()) {
+                al.add(new FuncionarioBean(rs.getInt("id"),rs.getString("email"),rs.getString("nome"),rs.getString("cpf"), rs.getDate("dataNasc"),rs.getInt("codigo")));
+            }            
+            if (al.isEmpty()) {
+                throw new FuncionarioException("Erro Funcionario: Falha ao procurar estes funcionarios");
+            }
+            return al;
+        } catch (SQLException e) {
+            System.out.println(e);
+           throw new FuncionarioException("Erro Funcionario: Comando SQL invalido");
+        } finally {
+            if (pst!= null) {try {pst.close(); } catch (SQLException ex) {throw new FuncionarioException("Erro Funcionario: Falha ao tentar fechar conexão!");}}
+        }
     }
     
 }

@@ -13,6 +13,9 @@ public class PedidoCasamentoBean implements Serializable{
     private Date dataSolicitacao;
     private Date dataCasamento;
     private int conjuge;
+    private float vlrTotal;
+    private String nomeConjuge;
+    private String nomeCliente;
     private int solicitante;
     private int nConvidados;
     private String padre;
@@ -23,10 +26,13 @@ public class PedidoCasamentoBean implements Serializable{
     private String madrinha1;
     private String madrinha2;
     private String itensOrcamento;
+    private String nomeFunc;
 
-    public PedidoCasamentoBean(int idPedido, int conjuge, int solicitante, int nConvidados, String padre, String igreja, String localLua, String padrinho1, String padrinho2, String madrinha1, String madrinha2, String itensOrcamento) {
+    public PedidoCasamentoBean(int idPedido, int conjuge, String nomeConjuge, String nomeCliente, int solicitante, int nConvidados, String padre, String igreja, String localLua, String padrinho1, String padrinho2, String madrinha1, String madrinha2, String itensOrcamento) {
         this.idPedido = idPedido;
         this.conjuge = conjuge;
+        this.nomeConjuge = nomeConjuge;
+        this.nomeCliente = nomeCliente;
         this.solicitante = solicitante;
         this.nConvidados = nConvidados;
         this.padre = padre;
@@ -39,11 +45,49 @@ public class PedidoCasamentoBean implements Serializable{
         this.itensOrcamento = itensOrcamento;
     }
 
+    public PedidoCasamentoBean(int idPedido, float vlrTotal, String itensOrcamento) {
+        this.idPedido = idPedido;
+        this.vlrTotal = vlrTotal;
+        this.itensOrcamento = itensOrcamento;
+    }
+
     public PedidoCasamentoBean() {
     }
 
     public boolean isAceito() {
         return aceito;
+    }
+
+    public String getNomeConjuge() {
+        return nomeConjuge;
+    }
+
+    public float getVlrTotal() {
+        return vlrTotal;
+    }
+
+    public void setVlrTotal(float vlrTotal) {
+        this.vlrTotal = vlrTotal;
+    }
+
+    public String getNomeFunc() {
+        return nomeFunc;
+    }
+
+    public void setNomeFunc(String nomeFunc) {
+        this.nomeFunc = nomeFunc;
+    }
+
+    public void setNomeConjuge(String nomeConjuge) {
+        this.nomeConjuge = nomeConjuge;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
     public void setAceito(boolean aceito) {

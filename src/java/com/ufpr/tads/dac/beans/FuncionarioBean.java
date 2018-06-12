@@ -1,14 +1,27 @@
 package com.ufpr.tads.dac.beans;
 
+import java.util.Date;
+
 public class FuncionarioBean {
     
     private int funcionarioId;
     private String email;
     private String nome;
+    private String cpf;
+    private Date dataNasc;
     private boolean adm;
     private int codigo;
 
     public FuncionarioBean() {
+    }
+
+    public FuncionarioBean(int funcionarioId, String email, String nome, String cpf, Date dataNasc, int codigo) {
+        this.funcionarioId = funcionarioId;
+        this.email = email;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNasc = dataNasc;
+        this.codigo = codigo;
     }
 
     public FuncionarioBean(int funcionarioId, String email, String nome, boolean adm, int codigo) {
@@ -21,6 +34,22 @@ public class FuncionarioBean {
 
     public boolean isAdm() {
         return adm;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Date getDataNasc() {
+        return dataNasc;
+    }
+
+    public void setDataNasc(Date dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
     public int getFuncionarioId() {

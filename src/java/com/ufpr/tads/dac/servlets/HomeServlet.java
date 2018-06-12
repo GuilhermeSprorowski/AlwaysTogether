@@ -1,7 +1,13 @@
 package com.ufpr.tads.dac.servlets;
 
 import com.ufpr.tads.dac.beans.FuncionarioBean;
+import com.ufpr.tads.dac.beans.PedidoCasamentoBean;
+import com.ufpr.tads.dac.exceptions.FuncionarioException;
+import com.ufpr.tads.dac.exceptions.PedidoCasamentoException;
+import com.ufpr.tads.dac.facade.FuncionarioFacade;
+import com.ufpr.tads.dac.facade.PedidoCasamentoFacade;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +21,6 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-            
         HttpSession session = request.getSession();
         FuncionarioBean login = (FuncionarioBean) session.getAttribute("funcionario");
         if (login == null) {
@@ -23,8 +28,24 @@ public class HomeServlet extends HttpServlet {
             request.setAttribute("msg", "É necessario esta logado para acessar essa pagina");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            System.out.println("Entrou!!");
-            request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+            if (login.isAdm()) {
+                try {
+                    request.setAttribute("funcionarioList", FuncionarioFacade.getAllFuncionarios());
+                    request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+                } catch (FuncionarioException ex) {
+                    request.setAttribute("msg", ex);
+                    request.getRequestDispatcher("jsp/erro.jsp").forward(request, response);
+                }
+            } else {
+                try {
+                    ArrayList<PedidoCasamentoBean> pedidos = PedidoCasamentoFacade.getAllPedidoOrcamento();
+                    request.setAttribute("pedidosList", pedidos);
+                    request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+                } catch (PedidoCasamentoException ex) {
+                    request.setAttribute("msg", ex);
+                    request.getRequestDispatcher("jsp/erro.jsp").forward(request, response);
+                }
+            }
         }
     }
 
