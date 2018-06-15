@@ -191,9 +191,7 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
                         rs.getString("padre"), rs.getString("igreja"), rs.getString("locallua"), rs.getString("padrinho1"), rs.getString("padrinho2"),
                         rs.getString("madrinha1"), rs.getString("madrinha2"), rs.getString("itensOrcamento"), rs.getBoolean("Premium"), rs.getFloat("valortotal")));
             }
-            if (al.isEmpty()) {
-                throw new PedidoCasamentoException("Erro pedido casamento: Falha ao procurar os pedidos");
-            }
+            
             return al;
         } catch (SQLException e) {
             System.out.println(e);
