@@ -1,4 +1,4 @@
-package com.ufpr.tads.dac.beans;
+ package com.ufpr.tads.dac.beans;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -27,8 +27,9 @@ public class PedidoCasamentoBean implements Serializable{
     private String madrinha2;
     private String itensOrcamento;
     private String nomeFunc;
+    private boolean premium;
 
-    public PedidoCasamentoBean(int idPedido, int conjuge, String nomeConjuge, String nomeCliente, int solicitante, int nConvidados, String padre, String igreja, String localLua, String padrinho1, String padrinho2, String madrinha1, String madrinha2, String itensOrcamento) {
+    public PedidoCasamentoBean(int idPedido, int conjuge, String nomeConjuge, String nomeCliente, int solicitante, int nConvidados, String padre, String igreja, String localLua, String padrinho1, String padrinho2, String madrinha1, String madrinha2, String itensOrcamento, boolean premium, float vlrTotal) {
         this.idPedido = idPedido;
         this.conjuge = conjuge;
         this.nomeConjuge = nomeConjuge;
@@ -43,6 +44,8 @@ public class PedidoCasamentoBean implements Serializable{
         this.madrinha1 = madrinha1;
         this.madrinha2 = madrinha2;
         this.itensOrcamento = itensOrcamento;
+        this.premium = premium;
+        this.vlrTotal = vlrTotal;
     }
 
     public PedidoCasamentoBean(int idPedido, float vlrTotal, String itensOrcamento) {
@@ -60,6 +63,14 @@ public class PedidoCasamentoBean implements Serializable{
 
     public String getNomeConjuge() {
         return nomeConjuge;
+    }
+
+    public boolean ispremium() {
+        return premium;
+    }
+
+    public void setpremium(boolean premium) {
+        this.premium = premium;
     }
 
     public float getVlrTotal() {
