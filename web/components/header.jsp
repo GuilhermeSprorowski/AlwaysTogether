@@ -14,8 +14,8 @@
         <a class="navbar-item is-active" href="PedidoCasamentoServlet">
             Casamentos
         </a>
-        <c:if test="${user.adm == true}">
-            <a class="navbar-item" href="FuncionarioServlet">
+        <c:if test="${user.adm}">
+            <a class="navbar-item" href="FuncionarioServlet?action=list">
                 Gerenciar Funcionários
             </a>
         </c:if>

@@ -10,6 +10,7 @@ public class FuncionarioBean {
     private String cpf;
     private Date dataNasc;
     private boolean adm;
+    private String senha;
     private int codigo;
 
     public FuncionarioBean() {
@@ -22,6 +23,16 @@ public class FuncionarioBean {
         this.cpf = cpf;
         this.dataNasc = dataNasc;
         this.codigo = codigo;
+    }
+    
+    public FuncionarioBean(int funcionarioId, String nome, Date dataNasc, boolean adm, String cpf, int codigo, String email) {
+        this.funcionarioId = funcionarioId;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNasc = dataNasc;
+        this.adm = adm;
+        this.codigo = codigo;
+        this.email = email;
     }
 
     public FuncionarioBean(int funcionarioId, String email, String nome, boolean adm, int codigo) {
@@ -42,6 +53,14 @@ public class FuncionarioBean {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+    
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String s) {
+        this.senha = s;
     }
 
     public Date getDataNasc() {

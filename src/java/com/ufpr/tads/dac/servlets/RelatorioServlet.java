@@ -17,6 +17,7 @@ public class RelatorioServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         FuncionarioBean login = (FuncionarioBean) session.getAttribute("funcionario");
+        request.setAttribute("user", login);
         if (login == null) {
             //envia para fazer login
             request.setAttribute("msg", "É necessario esta logado para acessar essa pagina");
