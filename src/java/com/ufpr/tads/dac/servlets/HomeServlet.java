@@ -28,24 +28,25 @@ public class HomeServlet extends HttpServlet {
             request.setAttribute("msg", "É necessario esta logado para acessar essa pagina");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            if (login.isAdm()) {
-                try {
-                    request.setAttribute("funcionarioList", FuncionarioFacade.getAllFuncionarios());
-                    request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
-                } catch (FuncionarioException ex) {
-                    request.setAttribute("msg", ex);
-                    request.getRequestDispatcher("jsp/erro.jsp").forward(request, response);
-                }
-            } else {
-                try {
-                    ArrayList<PedidoCasamentoBean> pedidos = PedidoCasamentoFacade.getAllPedidoOrcamento();
-                    request.setAttribute("pedidosList", pedidos);
-                    request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
-                } catch (PedidoCasamentoException ex) {
-                    request.setAttribute("msg", ex);
-                    request.getRequestDispatcher("jsp/erro.jsp").forward(request, response);
-                }
-            }
+            request.getRequestDispatcher("PedidoCasamentoServlet").forward(request, response);
+//            if (login.isAdm()) {
+//                try {
+//                    request.setAttribute("funcionarioList", FuncionarioFacade.getAllFuncionarios());
+//                    request.getRequestDispatcher("FuncionarioServlet").forward(request, response);
+//                } catch (FuncionarioException ex) {
+//                    request.setAttribute("msg", ex);
+//                    request.getRequestDispatcher("jsp/erro.jsp").forward(request, response);
+//                }
+//            } else {
+//                try {
+//                    ArrayList<PedidoCasamentoBean> pedidos = PedidoCasamentoFacade.getAllPedidoOrcamento();
+//                    request.setAttribute("pedidosList", pedidos);
+//                    request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+//                } catch (PedidoCasamentoException ex) {
+//                    request.setAttribute("msg", ex);
+//                    request.getRequestDispatcher("jsp/erro.jsp").forward(request, response);
+//                }
+//            }
         }
     }
 

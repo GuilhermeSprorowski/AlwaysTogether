@@ -1,0 +1,121 @@
+.navbar-item.is-active {
+    font-weight: 600;
+}
+.card-content-limit {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.cliente-modal {
+    width: 90vw;
+    background: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.hidden {
+    visibility: hidden;
+}
+.margem {
+    margin: 20px auto;
+}
+.card-header-title.title {
+    font-weight: 400;
+}
+.column.card {
+    margin: 5px;
+}
+.perfil.is-info {
+    background-color: #209cee;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+}
+.perfil.is-info img {
+    margin-right: 10px;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.image-encontro {
+    width: 512px;
+    height: 512px;
+}
+.flex-33 {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+.encontro  {
+    margin: 7.5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.encontro .img {
+    width: 100%;
+    height: auto;
+}
+.encontro .descricao {
+    max-height: 76px;
+    overflow-y: auto;
+    padding: 0 5px;
+    text-align: justify;
+}
+.encontro .title {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.encontro .title span {
+    font-size: 1.6rem;
+    margin-top: 7px;
+}
+.flex-33 .encontro {
+    flex: 0 1 calc(33% - 15px);
+}   
+.flex-row {
+    display: flex;
+    flex-direction: row;  
+    justify-content: space-between;
+}
+.list-item {
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 10px 10px 0 10px;
+}
+.flex-row .descricao {
+    margin: 0 20px;
+}
+.flex-row .descricao p {
+    max-height: 120px;
+    overflow: auto;
+}
+.padding-bottom {
+    padding-bottom: 10px;
+}
+a .round-image {
+    max-height: 2.75rem;
+    height: 2.75rem;
+    width: 2.75rem;
+    border-radius: 50%;
+}
+.modal-content.encontro-details {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    justify-content: center;
+}
+.modal-content.encontro-details .encontro {
+    background: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.searchfuncio{
+    text-align: center;
+}

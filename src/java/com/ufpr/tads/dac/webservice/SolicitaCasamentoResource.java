@@ -31,7 +31,7 @@ public class SolicitaCasamentoResource {
     public Response getOrcamento(@PathParam("id") String id) {
         System.out.println("getOrçamento: " + id);
         try {
-            PedidoCasamentoBean pc = PedidoCasamentoFacade.getPedidoCasamentoById(Integer.parseInt(id));
+            PedidoCasamentoBean pc = PedidoCasamentoFacade.getPedidoCasamentoByOrcamentoId(Integer.parseInt(id));
             return Response.ok(pc).build();
         } catch (PedidoCasamentoException ex) {
             return Response.serverError().build();

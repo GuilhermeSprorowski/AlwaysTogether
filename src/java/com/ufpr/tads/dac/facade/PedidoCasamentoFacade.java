@@ -13,8 +13,12 @@ public class PedidoCasamentoFacade {
         PedidoCasamentoDAO.setNovoPedidoCasamento(pc);
     }
 
-    public static PedidoCasamentoBean getPedidoCasamentoById(int pedidoId) throws PedidoCasamentoException {
-        return PedidoCasamentoDAO.getPedidoCasamentoById(pedidoId);
+    public static PedidoCasamentoBean getPedidoCasamentoByOrcamentoId(int pedidoId) throws PedidoCasamentoException {
+        return PedidoCasamentoDAO.getPedidoCasamentoByOrcamentoId(pedidoId);
+    }
+    
+    public static ArrayList<PedidoCasamentoBean> getPedidosCasamentoById(int pedidoId) throws PedidoCasamentoException {
+        return PedidoCasamentoDAO.getPedidoCasamentoByPedidoId(pedidoId);
     }
 
     public static void updateRespostaOrcamento(PedidoCasamentoBean pc) throws PedidoCasamentoException {
@@ -25,12 +29,16 @@ public class PedidoCasamentoFacade {
         PedidoCasamentoDAO.updatePedidoCasamento(pc, idFunc);
     }
 
-    public static ArrayList<PedidoCasamentoBean> getAllPedidoOrcamento() throws PedidoCasamentoException {
+    public static ArrayList<PedidoCasamentoBean> getAllPedidoOrcamentoNaoOrcados() throws PedidoCasamentoException {
         return PedidoCasamentoDAO.getAllPedidosNaoOrcados();
     }
 
     public static ArrayList<PedidoCasamentoBean> getAllPedidoOrcamentoByClienteId(int id) throws PedidoCasamentoException {
         return PedidoCasamentoDAO.getAllPedidoOrcamentoByClienteId(id);
+    }
+    
+    public static ArrayList<PedidoCasamentoBean> getAllPedidoOrcamentos() throws PedidoCasamentoException {
+        return PedidoCasamentoDAO.getAllPedidos();
     }
 
 }

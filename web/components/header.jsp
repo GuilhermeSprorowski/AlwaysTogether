@@ -2,7 +2,7 @@
 <nav id="navigation" class="navbar margem" role="navigation" aria-label="Navegação principal">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
-            <img src="images/logo4everalone.png" alt="4ever alone" style="max-height: 65px;">
+            <img src="images/ATlogo.png" alt="4ever alone" style="max-height: 65px;">
         </a>
         <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
             <span aria-hidden="true"></span>
@@ -10,59 +10,22 @@
             <span aria-hidden="true"></span>
         </a>
     </div>
-    <c:if test="${user.adm == true}">
-        <div id="navMenu" class="navbar-menu navbar-end">
-            <a class="navbar-item is-active" href="HomeServlet">
-                Home
+    <div id="navMenu" class="navbar-menu navbar-end">
+        <a class="navbar-item is-active" href="PedidoCasamentoServlet">
+            Casamentos
+        </a>
+        <c:if test="${user.adm == true}">
+            <a class="navbar-item" href="FuncionarioServlet">
+                Gerenciar Funcionários
             </a>
-            <a class="navbar-item" href="ClienteServlet?action=view">
-                Cadastrar cliente
-            </a>
-            <a class="navbar-item" href="ClienteServlet?action=view">
-                Promover festa
-            </a>
-            <a class="navbar-item" href="ClienteServlet?action=view">
-                Relatório
-            </a>
-            <a class="navbar-item" href="LogoutServlet">
-                Logout
-            </a>
-        </div>
-    </c:if>
-    <c:if test="${user.adm == false}">
-        <div id="navMenu" class="navbar-menu navbar-end">
-            <a class="navbar-item is-active" href="HomeServlet">
-                Home
-            </a>
-            <a class="navbar-item" href="EncontroServlet?action=solicitar-encontro-view">
-                Solicitar Encontro
-            </a>
-            <a class="navbar-item" href="EncontroServlet?action=meus-encontros">
-                Meus Encontros
-            </a>
-            <a class="navbar-item" href="FestaServlet?action=view">
-                Festas
-            </a>
-            <a class="navbar-item" href="CasamentoServlet?action=visualizar">
-                Casamento
-            </a>
-            <div id="active-toggle" class="navbar-item has-dropdown">
-                <a class="navbar-link">
-                    <img class="round-image" src="ImageServlet?action=view&img=${user.clienteId}"/>
-                </a>
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="ClienteServlet?action=view">
-                        Perfil
-                    </a>
-
-                    <a class="navbar-item" href="LogoutServlet">
-                        Logout
-                    </a>
-                </div>
-            </div>
-        </div>
-    </c:if>
-
+        </c:if>
+        <a class="navbar-item" href="RelatórioServlet">
+            Relatório
+        </a>
+        <a class="navbar-item" href="LogoutServlet">
+            Logout
+        </a>
+    </div>
 </nav>
 
 <script>

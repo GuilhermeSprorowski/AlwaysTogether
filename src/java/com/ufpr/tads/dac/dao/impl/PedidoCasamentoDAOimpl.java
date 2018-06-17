@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
 
@@ -65,7 +66,7 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
             pst = con.prepareStatement("UPDATE alwaystogether.pedido SET dataResposta = ?, aceito = ? WHERE id = ?;");
             pst.setDate(1, new java.sql.Date(pc.getDataConfirmacao().getTime()));
             pst.setBoolean(2, pc.isAceito());
-            pst.setInt(3, pc.getIdPedido());
+            pst.setInt(3, pc.getIdOrcamento());
             System.out.println(pst);
             int resp = pst.executeUpdate();
             if (resp == 0) {
@@ -118,13 +119,13 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
     }
 
     @Override
-    public PedidoCasamentoBean getPedidoCasamentoById(int pedidoCasamentoId) throws PedidoCasamentoException {
+    public PedidoCasamentoBean getPedidoCasamentoByOrcamentoId(int pedidoOrcamentoId) throws PedidoCasamentoException {
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
             con = new ConnectionFactory().getConnection();
             pst = con.prepareStatement("SELECT * FROM alwaystogether.pedido WHERE id = ?;");
-            pst.setInt(1, pedidoCasamentoId);
+            pst.setInt(1, pedidoOrcamentoId);
             System.out.println(pst);
             rs = pst.executeQuery();
             PedidoCasamentoBean u = null;
@@ -152,11 +153,11 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
         PreparedStatement pst = null;
         try {
             con = new ConnectionFactory().getConnection();
-            pst = con.prepareStatement("UPDATE alwaystogether.pedido SET itensOrcamento = ?, codFuncionario = ?, valortotal = ? WHERE id = ?;");
+            pst = con.prepareStatement("UPDATE alwaystogether.pedido SET codFuncionario = ?, itensOrcamento = ?, valortotal = ? WHERE id = ?");
             pst.setInt(1, funcId);
-            pst.setBoolean(2, pc.isAceito());
+            pst.setString(2, pc.getItensOrcamento());
             pst.setFloat(3, pc.getVlrTotal());
-            pst.setInt(4, pc.getIdPedido());
+            pst.setInt(4, pc.getIdOrcamento());
             int resp = pst.executeUpdate();
             if (resp == 0) {
                 throw new PedidoCasamentoException("Erro Pedido casamento: Problema ao Salvar reposta");
@@ -202,6 +203,85 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
                     pst.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro pedido casamento: Falha ao tentar fechar conexão!");
+                }
+            }
+        }
+    }
+
+    @Override
+    public ArrayList<PedidoCasamentoBean> getAllPedidos() throws PedidoCasamentoException {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        final ArrayList<PedidoCasamentoBean> al = new ArrayList<PedidoCasamentoBean>();
+        try {
+            con = new ConnectionFactory().getConnection();
+
+            pst = con.prepareStatement("SELECT s1.*\n" +
+                "FROM pedido s1\n" +
+                "LEFT JOIN pedido s2 ON s1.aceito = s2.aceito\n" +
+                "GROUP BY codPedido4ever\n" +
+                "ORDER BY itensOrcamento desc");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                PedidoCasamentoBean ped = new PedidoCasamentoBean(rs.getInt("codPedido4ever"), rs.getInt("id"), rs.getInt("codConjuge"), rs.getString("nomeConjuge"), rs.getString("nomeCliente"), rs.getInt("codCliente"), rs.getInt("numConvidados"),
+                        rs.getString("padre"), rs.getString("igreja"), rs.getString("locallua"), rs.getString("padrinho1"), rs.getString("padrinho2"),
+                        rs.getString("madrinha1"), rs.getString("madrinha2"), rs.getString("itensOrcamento"), rs.getBoolean("Premium"), rs.getFloat("valortotal"));
+
+                ped.setDataSolicitacao(rs.getDate("dataSolicitacao") == null ? null : rs.getDate("dataSolicitacao"));
+                ped.setDataConfirmacao(rs.getDate("dataResposta") == null ? null : rs.getDate("dataResposta"));
+                ped.setDataCasamento(rs.getDate("dataCasamento") == null ? null : rs.getDate("dataCasamento"));
+                ped.setAceito(rs.getBoolean("aceito"));
+                al.add(ped);
+            }
+            if (al.isEmpty()) {
+                throw new PedidoCasamentoException("Erro pedido casamento: Falha ao procurar os pedidos");
+            }
+            return al;
+        } catch (SQLException e) {
+            System.out.println(e);
+            throw new PedidoCasamentoException("Erro pedido casamento: Comando SQL invalido");
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    throw new PedidoCasamentoException("Erro pedido casamento: Falha ao tentar fechar conexão!");
+                }
+            }
+        }
+    }
+
+    @Override
+    public ArrayList<PedidoCasamentoBean> getPedidoCasamentoByPedidoId(int pedidoCasamentoId) throws PedidoCasamentoException {
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            con = new ConnectionFactory().getConnection();
+            pst = con.prepareStatement("SELECT * FROM alwaystogether.pedido WHERE codPedido4ever = ?;");
+            pst.setInt(1, pedidoCasamentoId);
+            System.out.println(pst);
+            rs = pst.executeQuery();
+            ArrayList<PedidoCasamentoBean> u = new ArrayList<>();
+            while (rs.next()) {
+                PedidoCasamentoBean p = new PedidoCasamentoBean(rs.getInt("codPedido4ever"), rs.getInt("id"), rs.getInt("codConjuge"), rs.getString("nomeConjuge"), rs.getString("nomeCliente"), rs.getInt("codCliente"), rs.getInt("numConvidados"),
+                        rs.getString("padre"), rs.getString("igreja"), rs.getString("locallua"), rs.getString("padrinho1"), rs.getString("padrinho2"),
+                        rs.getString("madrinha1"), rs.getString("madrinha2"), rs.getString("itensOrcamento"), rs.getBoolean("Premium"), rs.getFloat("valortotal"));
+                        
+                p.setDataSolicitacao(rs.getDate("dataSolicitacao") == null ? null : rs.getDate("dataSolicitacao"));
+                p.setDataConfirmacao(rs.getDate("dataResposta") == null ? null : rs.getDate("dataResposta"));
+                p.setDataCasamento(rs.getDate("dataCasamento") == null ? null : rs.getDate("dataCasamento"));
+                p.setAceito(rs.getBoolean("aceito"));
+                u.add(p);
+            }
+            return u;
+        } catch (SQLException e) {
+            throw new PedidoCasamentoException("Erro Usuario: comando sql invalido");
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    throw new PedidoCasamentoException("Erro user: erro ao fechar conecxão");
                 }
             }
         }
