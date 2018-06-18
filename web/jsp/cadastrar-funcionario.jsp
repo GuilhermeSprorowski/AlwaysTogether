@@ -23,7 +23,7 @@
               }
             ));
             $('#cpf').mask("000.000.000-00");
-            <c:if test="${funcionario.adm}">
+            <c:if test="${fnc.adm}">
                 $('#adm').click();
             </c:if>
             
@@ -54,14 +54,14 @@
                     <div class="column">
                         <div class="columns">
                             <c:if test="${form == 'alterar'}">
-                                <input type="hidden" name="idFuncionario" value="${funcionario.funcionarioId}"/>
+                                <input type="hidden" name="idFuncionario" value="${fnc.funcionarioId}"/>
                             </c:if>
                             
                             <div class="field column">
                                 <label class="label">Nome completo</label>
                                 <div class="control">
                                     <input required name="nome" class="input" type="text"
-                                           placeholder="Nome Completo" value="${funcionario.nome}">
+                                           placeholder="Nome Completo" value="${fnc.nome}">
                                 </div>
                             </div>
                             <div <c:if test="${form == 'alterar'}">style="display: none;"</c:if> class="field column">
@@ -84,7 +84,7 @@
                                 <label class="label">Data de nascimento:</label>
                                 <div class="control has-icons-left">
                                     <input required name="dataNasc" class="input" type="text" id="datepicker"
-                                           placeholder="Data nascimento" value='<fmt:formatDate pattern="dd/mm/yyyy" value="${funcionario.dataNasc}"></fmt:formatDate>'>
+                                           placeholder="Data nascimento" value='<fmt:formatDate pattern="dd/mm/yyyy" value="${fnc.dataNasc}"></fmt:formatDate>'>
                                     <span class="icon is-left">
                                         <i class="fas fa-calendar-alt"></i>
                                     </span> 
@@ -96,12 +96,12 @@
                             <div class="column">
                                 <label class="label" for="cpf">CPF</label>
                                 <input required name="cpf" id="cpf" class="input" type="text"
-                                       placeholder="000.000.000-00" value="${funcionario.cpf}">
+                                       placeholder="000.000.000-00" value="${fnc.cpf}">
                             </div>
                             <div class="column">
                                 <label class="label" for="codigo">Código</label>
                                 <input required name="codigo" class="input" type="text"
-                                       value="${funcionario.codigo}">
+                                       value="${fnc.codigo}">
                             </div>
                         </div>
                         <div class="field">
@@ -117,6 +117,11 @@
                             <c:if test="${form != 'alterar'}">Cadastar</c:if>
                             <c:if test="${form == 'alterar'}">Alterar</c:if>
                         </button>
+                        
+                        <a href="FuncionarioServlet?action=list">
+                            <button type="button" class="button">Cancelar</button>
+                        </a>
+                        
                     </div>
                 </div>
             </form>

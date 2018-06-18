@@ -1,7 +1,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <nav id="navigation" class="navbar margem" role="navigation" aria-label="Navegação principal">
     <div class="navbar-brand">
-        <a class="navbar-item" href="/">
+        <a class="navbar-item" href="HomeServlet">
             <img src="images/ATlogo.png" alt="4ever alone" style="max-height: 65px;">
         </a>
         <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
@@ -19,7 +19,7 @@
                 Gerenciar Funcionários
             </a>
         </c:if>
-        <a class="navbar-item" href="RelatórioServlet">
+        <a class="navbar-item" href="RelatorioServlet">
             Relatório
         </a>
         <a class="navbar-item" href="LogoutServlet">

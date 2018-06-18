@@ -1,8 +1,3 @@
-<%-- 
-    Document   : relatorios
-    Created on : 16/06/2018, 11:57:04
-    Author     : MURILO
---%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,9 +10,6 @@
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="lib/jquery-ui/jquery-ui.min.js"></script>
         <script src="lib/jquery-mask/jquery.mask.min.js"></script>
@@ -41,7 +33,7 @@
             </div>
         </section>
         <div class="container margem">
-            <form action="../GeradorRelatorio" method="POST">
+            <form action="GeradorRelatorio" method="POST">
                 <div class="field">
                     <label class="label" for="acao">Relatório</label>
                     <div class="select">
@@ -50,12 +42,12 @@
                             <option value="2">Relatório Financeiro de Orçamentos</option>
                         </select>
                     </div>
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button name="submit" type="submit" class="button is-link">Visualizar</button>
-                        </div>
+                </div>   
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button name="submit" type="submit" class="button is-link">Visualizar</button>
                     </div>
-                </div>              
+                </div>
             </form>
         </div>
     </body>

@@ -49,7 +49,7 @@ public class FuncionarioServlet extends HttpServlet {
                     request.setAttribute("form", "alterar");
                     int funcId = Integer.parseInt(request.getParameter("idFuncionario"));
                     
-                    request.setAttribute("funcionario", FuncionarioFacade.getFuncionarioById(funcId));
+                    request.setAttribute("fnc", FuncionarioFacade.getFuncionarioById(funcId));
                     request.getRequestDispatcher("jsp/cadastrar-funcionario.jsp").forward(request, response);
                 } catch (FuncionarioException ex) {
                     request.setAttribute("msg", ex);
