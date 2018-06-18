@@ -1,8 +1,3 @@
-﻿/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ufpr.tads.dac.servlets;
 
 import com.ufpr.tads.dac.beans.FuncionarioBean;
@@ -40,9 +35,9 @@ public class GeradorRelatorio extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-	HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         FuncionarioBean login = (FuncionarioBean) session.getAttribute("funcionario");
-        
+
         if (login == null) {
             //envia para fazer login
             request.setAttribute("msg", "É necessario esta logado para acessar essa pagina");
