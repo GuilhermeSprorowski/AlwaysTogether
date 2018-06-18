@@ -40,7 +40,9 @@ public class GeradorRelatorio extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-	
+	HttpSession session = request.getSession();
+        FuncionarioBean login = (FuncionarioBean) session.getAttribute("funcionario");
+        
         if (login == null) {
             //envia para fazer login
             request.setAttribute("msg", "É necessario esta logado para acessar essa pagina");
