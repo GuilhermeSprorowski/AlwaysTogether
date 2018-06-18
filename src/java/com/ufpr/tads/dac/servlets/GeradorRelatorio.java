@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -40,7 +40,14 @@ public class GeradorRelatorio extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+	HttpSession session = request.getSession();
+        FuncionarioBean login = (FuncionarioBean) session.getAttribute("funcionario");
+        
+        if (login == null) {
+            //envia para fazer login
+            request.setAttribute("msg", "É necessario esta logado para acessar essa pagina");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
             Connection con = null;
             int  acao = 1;
             String jasper = "";
@@ -96,7 +103,7 @@ public class GeradorRelatorio extends HttpServlet {
 
             }
         } // Fechamento do processRequest
-
+}
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
