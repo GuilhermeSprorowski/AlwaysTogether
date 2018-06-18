@@ -33,7 +33,9 @@ public class PedidoCasamentoServlet extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null || action.equals("list")) {
                 try {
+                    System.out.println("GET ALL PEDIDOS LIST");
                     request.setAttribute("pedidos", PedidoCasamentoFacade.getAllPedidoOrcamentos());
+                    System.out.println("PEGO");
                     request.getRequestDispatcher("jsp/pedido-casamento.jsp").forward(request, response);
                 } catch (PedidoCasamentoException ex) {
                     request.setAttribute("msg", ex);

@@ -21,8 +21,8 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
         System.out.println("setNovoPedidoCasamento Always");
         try {
             con = new ConnectionFactory().getConnection();
-            pst = con.prepareStatement("INSERT INTO alwaystogether.pedido(codPedido4ever,codCliente, codConjuge, numConvidados, padre, padrinho1, padrinho2, madrinha1,madrinha2, igreja, dataCasamento, locallua, Premium)\n"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);");
+            pst = con.prepareStatement("INSERT INTO alwaystogether.pedido(codPedido4ever,codCliente, codConjuge, numConvidados, padre, padrinho1, padrinho2, madrinha1,madrinha2, igreja, dataCasamento, locallua, Premium, nomeCliente, nomeConjuge)\n"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
             pst.setInt(1, pc.getIdPedido());
             pst.setInt(2, pc.getSolicitante());
             pst.setInt(3, pc.getConjuge());
@@ -36,10 +36,11 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
             pst.setDate(11, new java.sql.Date(pc.getDataCasamento().getTime()));
             pst.setString(12, pc.getLocalLua());
             pst.setBoolean(13, true);
+            pst.setString(14, pc.getNomeCliente());
+            pst.setString(15, pc.getNomeConjuge());
+            
             int resp = pst.executeUpdate();
-            System.out.println(pst);
             pst.setBoolean(13, false);
-            System.out.println(pst);
             resp = pst.executeUpdate();
             if (resp == 0) {
                 throw new PedidoCasamentoException("Erro Pedido casamento: Problema ao Salvar pedido");
@@ -232,9 +233,6 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
                 ped.setDataCasamento(rs.getDate("dataCasamento") == null ? null : rs.getDate("dataCasamento"));
                 ped.setAceito(rs.getBoolean("aceito"));
                 al.add(ped);
-            }
-            if (al.isEmpty()) {
-                throw new PedidoCasamentoException("Erro pedido casamento: Falha ao procurar os pedidos");
             }
             return al;
         } catch (SQLException e) {
