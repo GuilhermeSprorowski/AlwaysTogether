@@ -67,7 +67,7 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
             pst = con.prepareStatement("UPDATE alwaystogether.pedido SET dataResposta = ?, aceito = ? WHERE id = ?;");
             pst.setDate(1, new java.sql.Date(pc.getDataConfirmacao().getTime()));
             pst.setBoolean(2, pc.isAceito());
-            pst.setInt(3, pc.getIdOrcamento());
+            pst.setInt(3, pc.getIdPedido());
             System.out.println(pst);
             int resp = pst.executeUpdate();
             if (resp == 0) {
@@ -191,7 +191,7 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
             while (rs.next()) {
                 al.add(new PedidoCasamentoBean(rs.getInt("id"), rs.getInt("codConjuge"), rs.getString("nomeConjuge"), rs.getString("nomeCliente"), rs.getInt("codCliente"), rs.getInt("numConvidados"),
                         rs.getString("padre"), rs.getString("igreja"), rs.getString("locallua"), rs.getString("padrinho1"), rs.getString("padrinho2"),
-                        rs.getString("madrinha1"), rs.getString("madrinha2"), rs.getString("itensOrcamento"), rs.getBoolean("Premium"), rs.getFloat("valortotal")));
+                        rs.getString("madrinha1"), rs.getString("madrinha2"), rs.getString("itensOrcamento"), rs.getBoolean("Premium"), rs.getFloat("valortotal"), rs.getBoolean("aceito")));
             }
             
             return al;

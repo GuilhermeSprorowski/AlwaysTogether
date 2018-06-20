@@ -48,6 +48,26 @@ public class PedidoCasamentoBean implements Serializable {
         this.premium = premium;
         this.vlrTotal = vlrTotal;
     }
+    
+    public PedidoCasamentoBean(int idPedido, int conjuge, String nomeConjuge, String nomeCliente, int solicitante, int nConvidados, String padre, String igreja, String localLua, String padrinho1, String padrinho2, String madrinha1, String madrinha2, String itensOrcamento, boolean premium, float vlrTotal, boolean aceito) {
+        this.idPedido = idPedido;
+        this.conjuge = conjuge;
+        this.nomeConjuge = nomeConjuge;
+        this.nomeCliente = nomeCliente;
+        this.solicitante = solicitante;
+        this.nConvidados = nConvidados;
+        this.padre = padre;
+        this.igreja = igreja;
+        this.localLua = localLua;
+        this.padrinho1 = padrinho1;
+        this.padrinho2 = padrinho2;
+        this.madrinha1 = madrinha1;
+        this.madrinha2 = madrinha2;
+        this.itensOrcamento = itensOrcamento;
+        this.premium = premium;
+        this.vlrTotal = vlrTotal;
+        this.aceito = aceito;
+    }
 
     public PedidoCasamentoBean(int idPedido, int idOrcamento, int conjuge, String nomeConjuge, String nomeCliente, int solicitante, int nConvidados, String padre, String igreja, String localLua, String padrinho1, String padrinho2, String madrinha1, String madrinha2, String itensOrcamento, boolean premium, float vlrTotal) {
         this.idPedido = idPedido;

@@ -70,6 +70,7 @@ public class SolicitaCasamentoResource {
     public Response setRespostaPedido(PedidoCasamentoBean pc) {
         System.out.println("setPedido");
         try {
+            System.out.println("Resposta orçamento recebida");
             PedidoCasamentoFacade.updateRespostaOrcamento(pc);
             return Response.ok(true).build();
         } catch (PedidoCasamentoException ex) {
