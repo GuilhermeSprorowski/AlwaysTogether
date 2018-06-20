@@ -41,7 +41,10 @@ public class FuncionarioDAOimpl implements FuncionarioDAO{
             return u;
         } catch (SQLException e) {
             throw new FuncionarioException("Erro Usuario: comando sql invalido");
-        }finally {if (pst != null) {try { pst.close();} catch (SQLException ex) {throw new FuncionarioException("Erro user: erro ao fechar conecxão");}}
+        }finally {if (pst != null) {try { 
+                    rs.close();
+                    pst.close();
+                    con.close();} catch (SQLException ex) {throw new FuncionarioException("Erro user: erro ao fechar conecxão");}}
         }  
     }
     
@@ -88,7 +91,9 @@ public class FuncionarioDAOimpl implements FuncionarioDAO{
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new FuncionarioException("Erro funcionario: erro ao fechar conecxão");
                 }
@@ -120,7 +125,9 @@ public class FuncionarioDAOimpl implements FuncionarioDAO{
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new FuncionarioException("Erro funcionario: erro ao fechar conecxão");
                 }
@@ -147,6 +154,7 @@ public class FuncionarioDAOimpl implements FuncionarioDAO{
             if (pst != null) {
                 try {
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new FuncionarioException("Erro funcionario: erro ao fechar conecxão");
                 }
@@ -175,7 +183,9 @@ public class FuncionarioDAOimpl implements FuncionarioDAO{
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new FuncionarioException("Erro Funcionario: Falha ao tentar fechar conexão!");
                 }
@@ -219,7 +229,10 @@ public class FuncionarioDAOimpl implements FuncionarioDAO{
             System.out.println(e);
            throw new FuncionarioException("Erro Funcionario: Comando SQL invalido");
         } finally {
-            if (pst!= null) {try {pst.close(); } catch (SQLException ex) {throw new FuncionarioException("Erro Funcionario: Falha ao tentar fechar conexão!");}}
+            if (pst!= null) {try {
+                    rs.close();
+                    pst.close();
+                    con.close(); } catch (SQLException ex) {throw new FuncionarioException("Erro Funcionario: Falha ao tentar fechar conexão!");}}
         }
     }
     

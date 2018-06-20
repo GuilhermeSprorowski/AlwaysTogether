@@ -52,6 +52,7 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
             if (pst != null) {
                 try {
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro pedido casamento: erro ao fechar conecxão");
                 }
@@ -79,6 +80,7 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
             if (pst != null) {
                 try {
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro pedido casamento: erro ao fechar conecxão");
                 }
@@ -111,7 +113,9 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro pedido casamento: Falha ao tentar fechar conexão!");
                 }
@@ -141,7 +145,9 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro user: erro ao fechar conecxão");
                 }
@@ -169,6 +175,7 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
             if (pst != null) {
                 try {
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro pedido casamento: erro ao fechar conecxão");
                 }
@@ -201,7 +208,9 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro pedido casamento: Falha ao tentar fechar conexão!");
                 }
@@ -241,7 +250,9 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro pedido casamento: Falha ao tentar fechar conexão!");
                 }
@@ -277,7 +288,9 @@ public class PedidoCasamentoDAOimpl implements PedidoCasamentoDAO {
         } finally {
             if (pst != null) {
                 try {
+                    rs.close();
                     pst.close();
+                    con.close();
                 } catch (SQLException ex) {
                     throw new PedidoCasamentoException("Erro user: erro ao fechar conecxão");
                 }
